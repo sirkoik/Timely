@@ -11,9 +11,9 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <header className="App-header">
-        <Header />
-      </header>
+
+      <Header />
+
       <main>
         {timers.map((timer, index) => (
           <Timer

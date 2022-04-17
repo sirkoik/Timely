@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 const Header = (): JSX.Element => {
   return (
-    <>
+    <header>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
@@ -29,7 +29,7 @@ const Header = (): JSX.Element => {
           </Toolbar>
         </AppBar>
       </Box>
-    </>
+    </header>
   );
 };
 
