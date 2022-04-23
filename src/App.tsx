@@ -1,6 +1,6 @@
 import CssBaseline from '@mui/material/CssBaseline'; // Material UI CSS baseline for better compatibility
+import Container from '@mui/material/Container';
 
-import React from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 import Timer from './components/Timer';
@@ -15,14 +15,17 @@ function App() {
       <Header />
 
       <main>
-        {timers.map((timer, index) => (
-          <Timer
-            name={timer.name}
-            t1={timer.date}
-            key={index}
-            config={timer.config}
-          />
-        ))}
+        <Container>
+          {timers.map((timer, index) => (
+            <Timer
+              name={timer.name}
+              t1={timer.date}
+              category={timer.category}
+              key={index}
+              config={timer.config}
+            />
+          ))}
+        </Container>
       </main>
     </>
   );

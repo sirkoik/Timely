@@ -1,6 +1,12 @@
 # References
 
 [Using requestAnimationFrame with React Hooks](https://css-tricks.com/using-requestanimationframe-with-react-hooks/)
+[MUI App Bar](https://mui.com/material-ui/react-app-bar/)
+
+# Todo
+
+- Add / remove timers
+- "Condensed" format
 
 # Getting Started with Create React App
 

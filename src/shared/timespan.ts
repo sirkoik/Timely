@@ -4,7 +4,7 @@ export const timespan = (
   date0: Date,
   date1: Date,
   config?: TimespanConfig
-): string => {
+): { arr: Array<any>; str: string } => {
   const ts0 = date0.getTime();
   const ts1 = date1.getTime();
 
@@ -12,11 +12,13 @@ export const timespan = (
   let remainder = ts1 - ts0;
 
   let outputString = '';
+  const outputArr = [];
 
   if (config?.days === undefined || (config && config.days)) {
     const days = Math.floor(remainder / (86400 * 1000));
     if (days > 0) {
       outputString += ` ${days} days`;
+      outputArr.push({ name: 'days', value: days });
       remainder = remainder % (86400 * 1000);
     }
   }
@@ -25,6 +27,7 @@ export const timespan = (
     const hours = Math.floor(remainder / (3600 * 1000));
     if (hours > 0) {
       outputString += ` ${hours} hours`;
+      outputArr.push({ name: 'hours', value: hours });
       remainder = remainder % (3600 * 1000);
     }
   }
@@ -33,6 +36,7 @@ export const timespan = (
     const minutes = Math.floor(remainder / (60 * 1000));
     if (minutes > 0) {
       outputString += ` ${minutes} minutes`;
+      outputArr.push({ name: 'minutes', value: minutes });
       remainder = remainder % (60 * 1000);
     }
   }
@@ -43,8 +47,9 @@ export const timespan = (
     const seconds = Math.floor(remainder / 1000);
     if (seconds > 0) {
       outputString += ` ${seconds} seconds`;
+      outputArr.push({ name: 'seconds', value: seconds });
     }
   }
 
-  return outputString;
+  return { arr: outputArr, str: outputString };
 };
