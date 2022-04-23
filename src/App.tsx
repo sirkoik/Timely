@@ -1,11 +1,11 @@
 import CssBaseline from '@mui/material/CssBaseline'; // Material UI CSS baseline for better compatibility
-import Container from '@mui/material/Container';
 
 // import logo from './logo.svg';
 // import './App.css';
 import Timer from './components/Timer';
 import Header from './components/UI/Header';
 import timers from './shared/timers';
+import Grid from '@mui/material/Grid';
 
 function App() {
   return (
@@ -15,17 +15,19 @@ function App() {
       <Header />
 
       <main>
-        <Container>
+        <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
           {timers.map((timer, index) => (
-            <Timer
-              name={timer.name}
-              t1={timer.date}
-              category={timer.category}
-              key={index}
-              config={timer.config}
-            />
+            <Grid item xs={6} md={3} lg={4}>
+              <Timer
+                name={timer.name}
+                t1={timer.date}
+                category={timer.category}
+                key={index}
+                config={timer.config}
+              />
+            </Grid>
           ))}
-        </Container>
+        </Grid>
       </main>
     </>
   );

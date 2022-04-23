@@ -49,25 +49,20 @@ const Timer = ({
   }, []);
 
   return (
-    <Card
-      sx={{ display: 'inline-flex', justifyContent: 'center', m: 0.5 }}
-      variant="outlined"
-    >
-      <CardContent>
-        <Typography variant="h5">{name}</Typography>
-        <Container sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
-          {timerValue.arr.map((item) => (
-            <Container>
-              <Typography variant="h5" sx={{ textAlign: 'center' }}>
-                {item.value}
-              </Typography>
-              <Typography>{item.name}</Typography>
-            </Container>
-          ))}
-        </Container>
-        <Typography variant="h6">{category}</Typography>
-      </CardContent>
-    </Card>
+    <>
+      <Typography variant="h5">{name}</Typography>
+      <Container sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
+        {timerValue.arr.map((item) => (
+          <Container>
+            <Typography variant="h5" sx={{ textAlign: 'center' }}>
+              {item.value}
+            </Typography>
+            <Typography>{item.name}</Typography>
+          </Container>
+        ))}
+      </Container>
+      <Typography variant="h6">{category}</Typography>
+    </>
   );
 };
 
