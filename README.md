@@ -1,8 +1,15 @@
+# Currently at
+
+Creating a global state with useContext. Adding timers to that context.
+
 # References
 
 [Using requestAnimationFrame with React Hooks](https://css-tricks.com/using-requestanimationframe-with-react-hooks/)
 [MUI App Bar](https://mui.com/material-ui/react-app-bar/)
 [MUI Dark Mode](https://mui.com/material-ui/customization/dark-mode/)
+[Creating a Material UI form](https://onestepcode.com/creating-a-material-ui-form/)
+[Getting the value in the React material-UI Autocomplete](https://stackoverflow.com/questions/58666189/getting-the-value-in-the-react-material-ui-autocomplete)
+[MUI Event types](https://smartdevpreneur.com/material-ui-button-onclick-and-more-events-with-typescript/)
 
 # Todo
 

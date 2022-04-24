@@ -5,7 +5,6 @@ import {
   DialogContentText,
   DialogActions,
   Button,
-  Container,
 } from '@mui/material';
 
 interface FormatAboutProps {

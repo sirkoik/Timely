@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
+  Autocomplete,
   Button,
   Dialog,
   DialogActions,
@@ -10,18 +11,51 @@ import {
 } from '@mui/material';
 import { addTimer } from '../../models/timer';
 
+const categories = ['Custom date', 'Numerical dates', 'Holidays'];
+
+// note that date is stored as a string
+interface AddTimerForm {
+  name: string;
+  date: string;
+  category: string;
+}
+
 interface FormatAddTimerProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
-  const handleAdd = () => {
+  const [formValues, setFormValues] = useState<AddTimerForm>({
+    name: '',
+    date: '',
+    category: '',
+  });
+
+  const inputChangeHandler = (event: React.FormEvent<EventTarget>): void => {
+    const { id, value } = event.target as HTMLInputElement;
+    console.log(formValues);
+    setFormValues({ ...formValues, [id]: value });
+  };
+
+  // autoComplete requires the value prop and is triggered by onInputChange
+  // https://stackoverflow.com/questions/58666189/getting-the-value-in-the-react-material-ui-autocomplete
+  const acChangeHandler = (
+    event: React.FormEvent<EventTarget>,
+    value: string | null
+  ): void => {
+    if (typeof value === 'string') {
+      setFormValues({ ...formValues, category: value });
+    }
+  };
+
+  const handleAdd = (): void => {
     // addTimer();
+    console.log('here are the final form values', formValues);
     setOpen(false);
   };
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setOpen(false);
   };
 
@@ -40,6 +74,7 @@ const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
           label="Timer name (required)"
           type="text"
           margin="dense"
+          onChange={inputChangeHandler}
           fullWidth
         ></TextField>
         <TextField
@@ -48,12 +83,28 @@ const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
           label="Timer date and time (required)"
           type="datetime-local"
           margin="dense"
+          onChange={inputChangeHandler}
           fullWidth
         ></TextField>
+        <Autocomplete
+          id="category"
+          options={categories}
+          handleHomeEndKeys
+          disablePortal
+          freeSolo
+          onChange={acChangeHandler}
+          onInputChange={acChangeHandler}
+          sx={{ mt: 1 }}
+          renderInput={(params) => <TextField {...params} label="Category" />}
+        />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleAdd}>Add timer</Button>
+        <Button onClick={handleClose} color="secondary">
+          Cancel
+        </Button>
+        <Button onClick={handleAdd} color="primary" type="submit">
+          Add timer
+        </Button>
       </DialogActions>
     </Dialog>
   );
