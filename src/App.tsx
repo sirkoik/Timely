@@ -6,10 +6,26 @@ import Timer from './components/Timer';
 import Header from './components/UI/Header';
 import timers from './shared/timers';
 import Grid from '@mui/material/Grid';
+import { ThemeProvider, useMediaQuery } from '@mui/material';
+import { createTheme } from '@mui/material';
+import { useMemo } from 'react';
 
 function App() {
+  // automatically set dark mode based on user system preferences
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode]
+  );
+
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
 
       <Header />
@@ -39,7 +55,7 @@ function App() {
           </Grid>
         </Grid>
       </main>
-    </>
+    </ThemeProvider>
   );
 }
 
