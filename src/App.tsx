@@ -15,18 +15,28 @@ function App() {
       <Header />
 
       <main>
-        <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
-          {timers.map((timer, index) => (
-            <Grid item xs={6} md={3} lg={4}>
-              <Timer
-                name={timer.name}
-                t1={timer.date}
-                category={timer.category}
-                key={index}
-                config={timer.config}
-              />
+        <Grid container spacing={2} sx={{ flexGrow: 1, mt: 2 }}>
+          <Grid item xs={12}>
+            <Grid container justifyContent="center" spacing={4}>
+              {timers.map((timer, index) => (
+                <Grid
+                  item
+                  // sx={{ backgroundColor: 'green', border: '1px solid black' }}
+                  spacing={2}
+                >
+                  {
+                    <Timer
+                      name={timer.name}
+                      t1={timer.date}
+                      category={timer.category}
+                      key={index}
+                      config={timer.config}
+                    />
+                  }
+                </Grid>
+              ))}
             </Grid>
-          ))}
+          </Grid>
         </Grid>
       </main>
     </>

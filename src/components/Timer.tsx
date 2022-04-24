@@ -1,7 +1,11 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+
+import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
 import { timespan } from '../shared/timespan';
 import { TimespanConfig } from '../interfaces/TimespanConfig';
 import Typography from '@mui/material/Typography';
@@ -49,20 +53,25 @@ const Timer = ({
   }, []);
 
   return (
-    <>
+    <Paper elevation={2} sx={{ p: 1, pb: 0 }}>
       <Typography variant="h5">{name}</Typography>
-      <Container sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
+      <Stack direction="row" spacing={2}>
         {timerValue.arr.map((item) => (
-          <Container>
+          <Stack>
             <Typography variant="h5" sx={{ textAlign: 'center' }}>
               {item.value}
             </Typography>
-            <Typography>{item.name}</Typography>
-          </Container>
+            <Typography sx={{ textAlign: 'center' }}>{item.name}</Typography>
+          </Stack>
         ))}
-      </Container>
-      <Typography variant="h6">{category}</Typography>
-    </>
+      </Stack>
+      <Typography
+        variant="h6"
+        sx={{ textAlign: 'right', mt: 2, color: 'text.secondary' }}
+      >
+        {category}
+      </Typography>
+    </Paper>
   );
 };
 
