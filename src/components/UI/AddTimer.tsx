@@ -9,7 +9,6 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
-import { addTimer } from '../../models/timer';
 import { TimersContext } from '../../context/TimersContext';
 
 const categories = ['Custom date', 'Numerical dates', 'Holidays'];
