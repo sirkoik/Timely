@@ -14,6 +14,7 @@ Creating a global state with useContext. Adding timers to that context.
 # Todo
 
 - Add / remove timers
+- Add better calculation system. date-fns? Day.js? Luxon?
 - "Condensed" format
 - Notifications
 - MUI X Date/time picker
