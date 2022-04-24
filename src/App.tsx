@@ -6,22 +6,24 @@ import Timer from './components/Timer';
 import Header from './components/UI/Header';
 import timers from './shared/timers';
 import Grid from '@mui/material/Grid';
-import { Fab, ThemeProvider, useMediaQuery } from '@mui/material';
+import { createTheme, Fab, ThemeProvider, useMediaQuery } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { createTheme } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import AddTimer from './components/UI/AddTimer';
 import About from './components/UI/About';
 import TimersArray from './interfaces/TimersArray';
+import { TimersContext } from './context/TimersContext';
 
 function App() {
   const [addTimerOpen, setAddTimerOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
-  const [appTimers, setAppTimers] = useState<TimersArray>([]);
+  // const [appTimers, setAppTimers] = useState<TimersArray>([]);
+
+  const timersCtx = useContext(TimersContext);
 
   // set the initial value of the timers.
   useEffect(() => {
-    setAppTimers(timers);
+    timersCtx.populateTimers(timers);
   }, []);
 
   const handleAdd = () => {
@@ -63,7 +65,8 @@ function App() {
         <Grid container spacing={2} sx={{ flexGrow: 1, mt: 2 }}>
           <Grid item xs={12}>
             <Grid container justifyContent="center" spacing={4}>
-              {appTimers.map((timer, index) => (
+              {timersCtx.timers.length === 0 && <p>No timers loaded.</p>}
+              {timersCtx.timers.map((timer, index) => (
                 <Grid
                   item
                   // sx={{ backgroundColor: 'green', border: '1px solid black' }}

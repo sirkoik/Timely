@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Autocomplete,
   Button,
@@ -10,13 +10,12 @@ import {
   TextField,
 } from '@mui/material';
 import { addTimer } from '../../models/timer';
+import { TimersContext } from '../../context/TimersContext';
 
 const categories = ['Custom date', 'Numerical dates', 'Holidays'];
-
-// note that date is stored as a string
 interface AddTimerForm {
   name: string;
-  date: string;
+  date: Date;
   category: string;
 }
 
@@ -28,14 +27,18 @@ interface FormatAddTimerProps {
 const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
   const [formValues, setFormValues] = useState<AddTimerForm>({
     name: '',
-    date: '',
+    date: new Date(),
     category: '',
   });
 
+  const timersCtx = useContext(TimersContext);
+
   const inputChangeHandler = (event: React.FormEvent<EventTarget>): void => {
     const { id, value } = event.target as HTMLInputElement;
-    console.log(formValues);
-    setFormValues({ ...formValues, [id]: value });
+
+    const newValue: string | Date = id === 'date' ? new Date(value) : value;
+
+    setFormValues({ ...formValues, [id]: newValue });
   };
 
   // autoComplete requires the value prop and is triggered by onInputChange
@@ -50,7 +53,7 @@ const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
   };
 
   const handleAdd = (): void => {
-    // addTimer();
+    timersCtx.addTimer(formValues);
     console.log('here are the final form values', formValues);
     setOpen(false);
   };

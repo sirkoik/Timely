@@ -55,7 +55,7 @@ const Timer = ({
         // sx={{ border: '1px solid white' }}
       >
         {timerValue.arr.map((item, index) => (
-          <Stack sx={{ textAlign: 'center' }}>
+          <Stack sx={{ textAlign: 'center' }} key={index}>
             <Typography variant="h5">{item.value}</Typography>
             <Typography>{item.name}</Typography>
           </Stack>
