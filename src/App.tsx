@@ -11,12 +11,18 @@ import AddIcon from '@mui/icons-material/Add';
 import { createTheme } from '@mui/material';
 import { useMemo, useState } from 'react';
 import AddTimer from './components/UI/AddTimer';
+import About from './components/UI/About';
 
 function App() {
   const [addTimerOpen, setAddTimerOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
 
   const handleAdd = () => {
     setAddTimerOpen(true);
+  };
+
+  const handleAbout = () => {
+    setAboutOpen(true);
   };
 
   // automatically set dark mode based on user system preferences
@@ -36,7 +42,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Header addTimer={handleAdd} />
+      <Header addTimer={handleAdd} about={handleAbout} />
 
       <main>
         <Fab
@@ -72,6 +78,7 @@ function App() {
       </main>
 
       <AddTimer open={addTimerOpen} setOpen={setAddTimerOpen}></AddTimer>
+      <About open={aboutOpen} setOpen={setAboutOpen}></About>
     </ThemeProvider>
   );
 }

@@ -3,6 +3,7 @@ import {
   AppBar,
   Box,
   Button,
+  Divider,
   IconButton,
   Menu,
   MenuItem,
@@ -13,9 +14,10 @@ import React, { useState } from 'react';
 
 interface FormatHeaderProps {
   addTimer: () => void;
+  about: () => void;
 }
 
-const Header = ({ addTimer }: FormatHeaderProps): JSX.Element => {
+const Header = ({ addTimer, about }: FormatHeaderProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -60,7 +62,11 @@ const Header = ({ addTimer }: FormatHeaderProps): JSX.Element => {
             MenuListProps={{ 'aria-labelledby': 'app-button' }}
           >
             <MenuItem onClick={handleClose}>Login</MenuItem>
+            <Divider />
             <MenuItem onClick={() => runMenuFn(addTimer)}>Add Timer</MenuItem>
+            <MenuItem>Edit Timers</MenuItem>
+            <Divider />
+            <MenuItem onClick={() => runMenuFn(about)}>About</MenuItem>
           </Menu>
         </AppBar>
       </Box>

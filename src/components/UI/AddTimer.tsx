@@ -38,6 +38,7 @@ const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
           required
           label="Timer name (required)"
           type="text"
+          margin="dense"
           fullWidth
         ></TextField>
         <TextField
@@ -45,6 +46,7 @@ const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
           required
           label="Timer date and time (required)"
           type="datetime-local"
+          margin="dense"
           fullWidth
         ></TextField>
       </DialogContent>
