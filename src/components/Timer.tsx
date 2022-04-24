@@ -1,14 +1,7 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
+import { Paper, Stack, Typography } from '@mui/material';
 import { timespan } from '../shared/timespan';
 import { TimespanConfig } from '../interfaces/TimespanConfig';
-import Typography from '@mui/material/Typography';
 
 interface FormatDateProps {
   t1: Date;
@@ -55,13 +48,16 @@ const Timer = ({
   return (
     <Paper elevation={2} sx={{ p: 1, pb: 0 }}>
       <Typography variant="h5">{name}</Typography>
-      <Stack direction="row" spacing={2}>
-        {timerValue.arr.map((item) => (
-          <Stack>
-            <Typography variant="h5" sx={{ textAlign: 'center' }}>
-              {item.value}
-            </Typography>
-            <Typography sx={{ textAlign: 'center' }}>{item.name}</Typography>
+      <Stack
+        direction="row"
+        justifyContent="center"
+        spacing={2}
+        // sx={{ border: '1px solid white' }}
+      >
+        {timerValue.arr.map((item, index) => (
+          <Stack sx={{ textAlign: 'center' }}>
+            <Typography variant="h5">{item.value}</Typography>
+            <Typography>{item.name}</Typography>
           </Stack>
         ))}
       </Stack>

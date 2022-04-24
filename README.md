@@ -2,11 +2,14 @@
 
 [Using requestAnimationFrame with React Hooks](https://css-tricks.com/using-requestanimationframe-with-react-hooks/)
 [MUI App Bar](https://mui.com/material-ui/react-app-bar/)
+[MUI Dark Mode](https://mui.com/material-ui/customization/dark-mode/)
 
 # Todo
 
 - Add / remove timers
 - "Condensed" format
+- Notifications
+- MUI X Date/time picker
 
 # Getting Started with Create React App
 
