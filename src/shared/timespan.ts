@@ -1,4 +1,4 @@
-import { TimespanConfig } from '../interfaces/TimespanConfig';
+import TimespanConfig from '../interfaces/TimespanConfig';
 
 export const timespan = (
   date0: Date,

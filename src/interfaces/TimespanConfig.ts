@@ -1,4 +1,4 @@
-export interface TimespanConfig {
+export default interface TimespanConfig {
   days?: boolean;
   hours?: boolean;
   minutes?: boolean;

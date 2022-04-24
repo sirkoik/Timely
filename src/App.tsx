@@ -9,13 +9,20 @@ import Grid from '@mui/material/Grid';
 import { Fab, ThemeProvider, useMediaQuery } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { createTheme } from '@mui/material';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import AddTimer from './components/UI/AddTimer';
 import About from './components/UI/About';
+import TimersArray from './interfaces/TimersArray';
 
 function App() {
   const [addTimerOpen, setAddTimerOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [appTimers, setAppTimers] = useState<TimersArray>([]);
+
+  // set the initial value of the timers.
+  useEffect(() => {
+    setAppTimers(timers);
+  }, []);
 
   const handleAdd = () => {
     setAddTimerOpen(true);
@@ -56,7 +63,7 @@ function App() {
         <Grid container spacing={2} sx={{ flexGrow: 1, mt: 2 }}>
           <Grid item xs={12}>
             <Grid container justifyContent="center" spacing={4}>
-              {timers.map((timer, index) => (
+              {appTimers.map((timer, index) => (
                 <Grid
                   item
                   // sx={{ backgroundColor: 'green', border: '1px solid black' }}

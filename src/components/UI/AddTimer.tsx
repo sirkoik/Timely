@@ -8,6 +8,7 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
+import { addTimer } from '../../models/timer';
 
 interface FormatAddTimerProps {
   open: boolean;
@@ -16,7 +17,7 @@ interface FormatAddTimerProps {
 
 const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
   const handleAdd = () => {
-    alert('This is a placeholder for the add timer code.');
+    // addTimer();
     setOpen(false);
   };
 

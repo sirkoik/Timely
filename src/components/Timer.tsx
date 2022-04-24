@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { Paper, Stack, Typography } from '@mui/material';
 import { timespan } from '../shared/timespan';
-import { TimespanConfig } from '../interfaces/TimespanConfig';
+import TimespanConfig from '../interfaces/TimespanConfig';
 
 interface FormatDateProps {
   t1: Date;

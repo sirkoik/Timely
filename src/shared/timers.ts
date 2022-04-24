@@ -1,15 +1,4 @@
-import { TimespanConfig } from '../interfaces/TimespanConfig';
-
-interface TimersObj {
-  name: string;
-  date: Date;
-  category: string;
-  config?: TimespanConfig;
-}
-
-interface TimersArray extends Array<TimersObj> {
-  [index: number]: TimersObj;
-}
+import TimersArray from '../interfaces/TimersArray';
 
 const timers: TimersArray = [
   {

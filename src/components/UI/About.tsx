@@ -8,12 +8,12 @@ import {
   Container,
 } from '@mui/material';
 
-interface FormatAddTimerProps {
+interface FormatAboutProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const About = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
+const About = ({ open, setOpen }: FormatAboutProps): JSX.Element => {
   const handleClose = () => {
     setOpen(false);
   };
