@@ -9,14 +9,11 @@ import {
   Card,
   CardHeader,
   CardContent,
-  Paper,
   Stack,
   Typography,
-  CardActions,
   IconButton,
   Menu,
   MenuItem,
-  MenuList,
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
@@ -61,7 +58,8 @@ const Timer = ({
   };
 
   const handleEdit = () => {
-    alert(`Placeholder: edit timer with id=${id}`);
+    timersCtx.setEditId(id);
+    timersCtx.setAddTimerOpen(true);
     handleClose();
   };
 

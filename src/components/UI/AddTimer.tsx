@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Autocomplete,
   Button,
@@ -25,8 +25,8 @@ interface FormatAddTimerProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-// TODO supply id here.
-const AddTimer = ({ id, open, setOpen }: FormatAddTimerProps): JSX.Element => {
+// need to set state for id when adding.
+const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
   const [formValues, setFormValues] = useState<AddTimerForm>({
     id: undefined,
     name: '',
@@ -35,6 +35,21 @@ const AddTimer = ({ id, open, setOpen }: FormatAddTimerProps): JSX.Element => {
   });
 
   const timersCtx = useContext(TimersContext);
+  const id = timersCtx.editId; // TODO make this stateful in the component?
+
+  useEffect(() => {
+    if (id !== undefined) {
+      const timerLookup = timersCtx.timers.find((timer) => timer.id === id);
+      console.log(timerLookup);
+
+      setFormValues({
+        id: id,
+        name: timerLookup?.name || '',
+        date: timerLookup?.date || new Date(),
+        category: timerLookup?.category || '',
+      });
+    }
+  }, [id, timersCtx.timers]);
 
   const inputChangeHandler = (event: React.FormEvent<EventTarget>): void => {
     const { id, value } = event.target as HTMLInputElement;
@@ -56,7 +71,12 @@ const AddTimer = ({ id, open, setOpen }: FormatAddTimerProps): JSX.Element => {
   };
 
   const handleAdd = (): void => {
-    timersCtx.addTimer(formValues);
+    if (id === undefined) {
+      timersCtx.addTimer(formValues);
+    } else {
+      timersCtx.updateTimer(id, formValues);
+    }
+
     console.log('here are the final form values', formValues);
     setOpen(false);
   };
@@ -65,9 +85,17 @@ const AddTimer = ({ id, open, setOpen }: FormatAddTimerProps): JSX.Element => {
     setOpen(false);
   };
 
+  // convert JS Date to a format that is compatible with the datetime-local form input field
+  // https://stackoverflow.com/a/66558369/5511776
+  const datetimeLocalFormDate = new Date(
+    formValues.date.getTime() - formValues.date.getTimezoneOffset() * 60000
+  )
+    .toISOString()
+    .slice(0, -1);
+
   return (
     <Dialog open={open}>
-      <DialogTitle>Add Timer</DialogTitle>
+      <DialogTitle>{id ? 'Edit Timer' : 'Add Timer'}</DialogTitle>
       <DialogContent>
         <DialogContentText>
           To add a timer, provide a name and choose the time and date you want
@@ -82,6 +110,7 @@ const AddTimer = ({ id, open, setOpen }: FormatAddTimerProps): JSX.Element => {
           margin="dense"
           onChange={inputChangeHandler}
           fullWidth
+          value={formValues.name}
         ></TextField>
         <TextField
           id="date"
@@ -91,6 +120,7 @@ const AddTimer = ({ id, open, setOpen }: FormatAddTimerProps): JSX.Element => {
           margin="dense"
           onChange={inputChangeHandler}
           fullWidth
+          value={datetimeLocalFormDate}
         ></TextField>
         <Autocomplete
           id="category"
@@ -101,6 +131,7 @@ const AddTimer = ({ id, open, setOpen }: FormatAddTimerProps): JSX.Element => {
           onChange={acChangeHandler}
           onInputChange={acChangeHandler}
           sx={{ mt: 1 }}
+          value={formValues.category}
           renderInput={(params) => <TextField {...params} label="Category" />}
         />
       </DialogContent>
@@ -109,7 +140,7 @@ const AddTimer = ({ id, open, setOpen }: FormatAddTimerProps): JSX.Element => {
           Cancel
         </Button>
         <Button onClick={handleAdd} color="primary" type="submit">
-          Add timer
+          {id ? 'Confirm changes' : 'Add timer'}
         </Button>
       </DialogActions>
     </Dialog>
