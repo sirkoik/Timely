@@ -1,5 +1,6 @@
 import TimespanConfig from '../interfaces/TimespanConfig';
 
+// TODO make output array type more specific
 export const timespan = (
   date0: Date,
   date1: Date,
