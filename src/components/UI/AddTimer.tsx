@@ -13,18 +13,22 @@ import { TimersContext } from '../../context/TimersContext';
 
 const categories = ['Custom date', 'Numerical dates', 'Holidays'];
 interface AddTimerForm {
+  id: number | undefined;
   name: string;
   date: Date;
   category: string;
 }
 
 interface FormatAddTimerProps {
+  id?: number | undefined;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
+// TODO supply id here.
+const AddTimer = ({ id, open, setOpen }: FormatAddTimerProps): JSX.Element => {
   const [formValues, setFormValues] = useState<AddTimerForm>({
+    id: undefined,
     name: '',
     date: new Date(),
     category: '',

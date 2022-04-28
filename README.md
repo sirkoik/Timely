@@ -15,6 +15,7 @@ Creating a global state with useContext. Adding timers to that context.
 
 - Add / remove timers
 - Add better calculation system. date-fns? Day.js? Luxon?
+  - date-fns and Luxon appear to have useful duration functions.
 - "Condensed" format
 - Notifications
 - MUI X Date/time picker

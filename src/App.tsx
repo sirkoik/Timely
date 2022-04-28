@@ -23,6 +23,8 @@ function App() {
 
   // set the initial value of the timers.
   useEffect(() => {
+    // add an id to each object manually (for now).
+    timers.forEach((timer, index) => (timer.id = index));
     timersCtx.populateTimers(timers);
   }, []);
 
@@ -74,6 +76,7 @@ function App() {
                 >
                   {
                     <Timer
+                      id={timer.id}
                       name={timer.name}
                       t1={timer.date}
                       category={timer.category}

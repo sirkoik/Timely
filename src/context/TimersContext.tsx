@@ -14,6 +14,7 @@ const TimersContext = createContext({
   timers: [] as TimersArray,
   addTimer: ({ name, date, category, config }: formatAddTimerProps): void => {},
   populateTimers: (timers: TimersArray): void => {},
+  deleteTimer: (timerId: number | undefined): void => {},
 });
 
 const TimersProvider = (props: any) => {
@@ -36,12 +37,21 @@ const TimersProvider = (props: any) => {
     setTimers([...timers, newTimer]);
   };
 
+  // populate the list of timers with an input value
   const populateTimers = (timers: TimersArray): void => {
     setTimers(timers);
   };
 
+  // delete a timer with a given id from the list of timers
+  const deleteTimer = (timerId: number | undefined): void => {
+    const newTimers = timers.filter((timer) => timer.id !== timerId);
+    setTimers(newTimers);
+  };
+
   return (
-    <TimersContext.Provider value={{ timers, addTimer, populateTimers }}>
+    <TimersContext.Provider
+      value={{ timers, addTimer, populateTimers, deleteTimer }}
+    >
       {props.children}
     </TimersContext.Provider>
   );
