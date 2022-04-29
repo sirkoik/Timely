@@ -28,6 +28,7 @@ const TimersProvider = (props: any) => {
   const [editId, setEditId] = useState<number | undefined>(undefined);
   const [addTimerOpen, setAddTimerOpen] = useState(false);
 
+  // TODO useEffect for debugging
   useEffect(() => {
     console.log('Timers updated in context.', new Date().getTime(), timers);
   }, [timers]);
@@ -39,7 +40,14 @@ const TimersProvider = (props: any) => {
     category,
     config,
   }: formatAddTimerProps): void => {
+    // generate new ID for the timer to be added.
+    // if timers is null or not defined, newId is 0
+    // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#nullish-coalescing
+    let newId = timers?.[timers?.length - 1].id || -1;
+    newId++;
+
     const newTimer: TimerObj = {
+      id: newId,
       name: name,
       date: date,
       category: category,
@@ -67,7 +75,14 @@ const TimersProvider = (props: any) => {
 
   // delete a timer with a given id from the list of timers
   const deleteTimer = (timerId: number | undefined): void => {
-    const newTimers = timers.filter((timer) => timer.id !== timerId);
+    if (timerId === undefined) {
+      throw new Error('Delete requires timer ID');
+    }
+
+    const newTimers: TimersArray = timers.filter(
+      (timer) => timer.id !== timerId
+    );
+
     console.log('timer deleted. new timers', newTimers);
     setTimers(newTimers);
   };

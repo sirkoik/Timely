@@ -63,23 +63,28 @@ const Timer = ({
     handleClose();
   };
 
+  // TODO add call for delete confirm dialog
   const handleDelete = () => {
-    //alert(`Placeholder: delete timer with id=${id}`);
     timersCtx.deleteTimer(id);
     handleClose();
   };
+
+  // setInterval(() => {
+  //   setTimerValue(timesp(t1, config));
+  // }, 500);
 
   // references for requestAnimationFrame
   const requestRef: MutableRefObject<any> | undefined = useRef();
   const prevTimeRef = useRef(0);
   const intervalRef = useRef(0);
+  const interval = 100;
 
   const animate = (time: any) => {
     if (prevTimeRef.current !== undefined) {
       // const dt = time - prevTimeRef.current;
       const db = time - intervalRef.current;
 
-      if (db >= 100) {
+      if (db >= interval) {
         intervalRef.current = time;
         setTimerValue(timesp(t1, config));
       }

@@ -95,7 +95,7 @@ const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
 
   return (
     <Dialog open={open}>
-      <DialogTitle>{id ? 'Edit Timer' : 'Add Timer'}</DialogTitle>
+      <DialogTitle>{id !== undefined ? 'Edit Timer' : 'Add Timer'}</DialogTitle>
       <DialogContent>
         <DialogContentText>
           To add a timer, provide a name and choose the time and date you want
@@ -140,7 +140,7 @@ const AddTimer = ({ open, setOpen }: FormatAddTimerProps): JSX.Element => {
           Cancel
         </Button>
         <Button onClick={handleAdd} color="primary" type="submit">
-          {id ? 'Confirm changes' : 'Add timer'}
+          {id !== undefined ? 'Confirm changes' : 'Add timer'}
         </Button>
       </DialogActions>
     </Dialog>

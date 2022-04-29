@@ -11,6 +11,7 @@ Creating a global state with useContext. Adding timers to that context.
 [Getting the value in the React material-UI Autocomplete](https://stackoverflow.com/questions/58666189/getting-the-value-in-the-react-material-ui-autocomplete)
 [MUI Event types](https://smartdevpreneur.com/material-ui-button-onclick-and-more-events-with-typescript/)
 [assign javascript date to html5 datetime-local input](https://stackoverflow.com/a/66558369/5511776) - trickier than it seems at first glance!
+[Optional Chaining and Nullish Coalescing](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#nullish-coalescing)
 
 # Todo
 
