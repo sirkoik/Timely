@@ -11,7 +11,7 @@ const timers: TimersArray = [
   },
   {
     name: 'End of month',
-    date: new Date('Apr 30 2022 11:59:59 PM'),
+    date: new Date('May 31 2022 11:59:59 PM'),
     category: 'Numerical dates',
   },
   {
