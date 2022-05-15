@@ -1,15 +1,8 @@
-import React, {
-  MutableRefObject,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Card,
   CardHeader,
   CardContent,
-  Stack,
   Typography,
   IconButton,
   Menu,
@@ -20,9 +13,9 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { timespan } from '../shared/timespan';
 import TimespanConfig from '../interfaces/TimespanConfig';
 import { TimersContext } from '../context/TimersContext';
+import TimerOutput from './TimerOutput';
 
 interface FormatDateProps {
   id: number | undefined;
@@ -32,9 +25,6 @@ interface FormatDateProps {
   config?: TimespanConfig;
 }
 
-const timesp = (t1: Date, config?: TimespanConfig) =>
-  timespan(new Date(), t1, config);
-
 const Timer = ({
   id,
   t1,
@@ -43,7 +33,6 @@ const Timer = ({
   config,
 }: FormatDateProps): JSX.Element => {
   const timersCtx = useContext(TimersContext);
-  const [timerValue, setTimerValue] = useState(timesp(t1, config));
 
   // menu anchor
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -69,36 +58,6 @@ const Timer = ({
     handleClose();
   };
 
-  // setInterval(() => {
-  //   setTimerValue(timesp(t1, config));
-  // }, 500);
-
-  // references for requestAnimationFrame
-  const requestRef: MutableRefObject<any> | undefined = useRef();
-  const prevTimeRef = useRef(0);
-  const intervalRef = useRef(0);
-  const interval = 100;
-
-  const animate = (time: any) => {
-    if (prevTimeRef.current !== undefined) {
-      // const dt = time - prevTimeRef.current;
-      const db = time - intervalRef.current;
-
-      if (db >= interval) {
-        intervalRef.current = time;
-        setTimerValue(timesp(t1, config));
-      }
-    }
-
-    prevTimeRef.current = time;
-    requestRef.current = requestAnimationFrame(animate);
-  };
-
-  useEffect(() => {
-    requestRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(requestRef.current);
-  }, []);
-
   return (
     <Card elevation={2} sx={{ p: 1, pb: 0 }}>
       <CardHeader
@@ -110,14 +69,7 @@ const Timer = ({
         }
       />
       <CardContent>
-        <Stack direction="row" justifyContent="center" spacing={2}>
-          {timerValue.arr.map((item, index) => (
-            <Stack sx={{ textAlign: 'center' }} key={index}>
-              <Typography variant="h5">{item.value}</Typography>
-              <Typography>{item.name}</Typography>
-            </Stack>
-          ))}
-        </Stack>
+        <TimerOutput t1={t1} config={config} />
         <Typography
           variant="h6"
           sx={{ textAlign: 'right', mt: 2, color: 'text.secondary' }}
