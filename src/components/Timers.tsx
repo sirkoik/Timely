@@ -1,4 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  MutableRefObject,
+} from 'react';
 import Grid from '@mui/material/Grid';
 import { TimersContext } from '../context/TimersContext';
 import Timer from './Timer';
@@ -8,15 +14,41 @@ const Timers = (): JSX.Element => {
   const [refresh, setRefresh] = useState<number>(0);
 
   // refresh all timers (Timers and all child components) by updating the state on an the interval `tick`
-  const tick = 1000;
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setRefresh((prev) => prev + 1);
-    }, tick);
+  // const tick = 1000;
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setRefresh((prev) => prev + 1);
+  //   }, tick);
 
-    return () => {
-      clearInterval(timer);
-    };
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, []);
+
+  console.log(
+    'the entire Timers component has been re-rendered. this may not be performant with a large number of timers.'
+  );
+
+  // refresh all timers on an interval `tick` with requestAnimationFrame.
+
+  const requestRef: MutableRefObject<number> = useRef(0);
+  const prevTimeRef: MutableRefObject<number> = useRef(0);
+  const tick = 1000;
+
+  const animate = (time: number) => {
+    const deltaTime = time - prevTimeRef.current;
+
+    if (deltaTime >= tick) {
+      setRefresh((prev) => prev + 1);
+      prevTimeRef.current = time;
+    }
+
+    requestRef.current = requestAnimationFrame(animate);
+  };
+
+  useEffect(() => {
+    requestRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(requestRef.current);
   }, []);
 
   return (

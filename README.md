@@ -1,6 +1,7 @@
 # Currently at
 
-Creating a global state with useContext. Adding timers to that context.
+Finding the most efficient means to refresh the timers. Will updating the state from context refresh the whole Timers
+component, or just the TimerOutput components?
 
 # References
 
