@@ -38,7 +38,7 @@ const Timers = (): JSX.Element => {
   const animate = (time: number) => {
     const deltaTime = time - prevTimeRef.current;
 
-    if (deltaTime >= tick) {
+    if (deltaTime >= tick && timersCtx.timers.length > 0) {
       setRefresh((prev) => prev + 1);
       prevTimeRef.current = time;
     }

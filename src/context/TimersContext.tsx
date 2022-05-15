@@ -43,7 +43,7 @@ const TimersProvider = (props: any) => {
     // generate new ID for the timer to be added.
     // if timers is null or not defined, newId is 0
     // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#nullish-coalescing
-    let newId = timers?.[timers?.length - 1].id || -1;
+    let newId = timers?.[timers?.length - 1]?.id || -1;
     newId++;
 
     const newTimer: TimerObj = {
