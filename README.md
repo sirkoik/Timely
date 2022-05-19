@@ -22,6 +22,7 @@ component, or just the TimerOutput components?
 - "Condensed" format
 - Notifications
 - MUI X Date/time picker
+- Heroku integrations / Postgres
 
 # Getting Started with Create React App
 
