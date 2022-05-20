@@ -34,6 +34,8 @@ const Timer = ({
 }: FormatDateProps): JSX.Element => {
   const timersCtx = useContext(TimersContext);
 
+  console.log('A Timer component has rendered. The ID is: ', id);
+
   // menu anchor
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
