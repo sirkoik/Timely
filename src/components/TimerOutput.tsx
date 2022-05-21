@@ -6,7 +6,7 @@ import {
   MutableRefObject,
 } from 'react';
 import { Stack, Typography } from '@mui/material';
-import { timespan } from '../shared/timespan-date-fns';
+import { timespan } from '../shared/timespanDateFns';
 
 // ensure that only strings can be passed as key values
 interface DurationKeysTyped extends Duration {

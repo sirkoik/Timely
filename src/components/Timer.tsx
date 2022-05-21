@@ -13,6 +13,9 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+
+import { format } from 'date-fns';
+
 import TimespanConfig from '../interfaces/TimespanConfig';
 import { TimersContext } from '../context/TimersContext';
 import TimerOutput from './TimerOutput';
@@ -64,6 +67,7 @@ const Timer = ({
     <Card elevation={2} sx={{ p: 1, pb: 0 }}>
       <CardHeader
         title={name}
+        subheader={format(t1, 'P')}
         action={
           <IconButton aria-label="actions" onClick={handleMenuIconClick}>
             <MoreVertIcon />
