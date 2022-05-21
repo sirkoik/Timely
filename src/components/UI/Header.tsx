@@ -36,7 +36,7 @@ const Header = ({ addTimer, about }: FormatHeaderProps): JSX.Element => {
   return (
     <header>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar>
           <Toolbar>
             <IconButton
               id="app-button"

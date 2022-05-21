@@ -56,7 +56,7 @@ function App() {
         <Fab
           color="primary"
           aria-label="add"
-          sx={{ position: 'absolute', bottom: 16, right: 16 }}
+          sx={{ position: 'fixed', bottom: 16, right: 16 }}
           onClick={handleAdd}
         >
           <AddIcon />

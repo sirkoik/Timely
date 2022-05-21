@@ -17,24 +17,22 @@ const Timers = (): JSX.Element => {
   );
 
   return (
-    <Grid container spacing={2} sx={{ flexGrow: 1, mt: 2 }}>
-      <Grid item xs={12}>
-        <Grid container justifyContent="center" spacing={4}>
-          {timersCtx.timers.length === 0 && <p>No timers loaded.</p>}
-          {timersCtx.timers.map((timer, index) => (
-            <Grid item key={index}>
-              {
-                <Timer
-                  id={timer.id}
-                  name={timer.name}
-                  t1={timer.date}
-                  category={timer.category}
-                  config={timer.config}
-                />
-              }
-            </Grid>
-          ))}
-        </Grid>
+    <Grid container spacing={0} sx={{ flexGrow: 1, mt: 8, p: 4 }}>
+      <Grid container justifyContent="left" spacing={4}>
+        {timersCtx.timers.length === 0 && <p>No timers loaded.</p>}
+        {timersCtx.timers.map((timer, index) => (
+          <Grid item key={index} xs={12} sm={6} lg={4} xl={3}>
+            {
+              <Timer
+                id={timer.id}
+                name={timer.name}
+                t1={timer.date}
+                category={timer.category}
+                config={timer.config}
+              />
+            }
+          </Grid>
+        ))}
       </Grid>
     </Grid>
   );
