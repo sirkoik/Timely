@@ -6,11 +6,19 @@ import {
   MutableRefObject,
 } from 'react';
 import { Stack, Typography } from '@mui/material';
-import { timespan } from '../shared/timespan';
+import { timespan } from '../shared/timespan-date-fns';
+
+// ensure that only strings can be passed as key values
+interface DurationKeysTyped extends Duration {
+  [key: string]: number | undefined;
+}
 
 const TimerOutput = (props: any): JSX.Element => {
-  const [timerVal, setTimerVal] = useState<{ arr: any[]; str: string }>({
-    arr: [],
+  const [timerVal, setTimerVal] = useState<{
+    durationObj: DurationKeysTyped;
+    str: string;
+  }>({
+    durationObj: {},
     str: '',
   });
 
@@ -43,26 +51,21 @@ const TimerOutput = (props: any): JSX.Element => {
     return () => cancelAnimationFrame(requestRef.current);
   }, [animate]);
 
-  // this works.
-  // useEffect(() => {
-  //   const timeout = setInterval(() => {
-  //     const timerValue = timespan(new Date(), props.t1, props.config);
-  //     setTimerVal(timerValue);
-  //   }, 1000);
+  const dur: DurationKeysTyped = timerVal.durationObj;
+  // const dur: Duration[index: string] = timerVal.durationObj;
 
-  //   return () => clearInterval(timeout);
-  // }, [props.t1, props.config]);
-
-  // console.log('TimerOutput updated', timerVal);
-
+  // dur[key] !== 0 (hide zero-length time elements) can be made into an optional condition.
   return (
     <Stack direction="row" justifyContent="center" spacing={2}>
-      {timerVal.arr.map((item, index) => (
-        <Stack sx={{ textAlign: 'center' }} key={index}>
-          <Typography variant="h5">{item.value}</Typography>
-          <Typography>{item.name}</Typography>
-        </Stack>
-      ))}
+      {Object.keys(dur).map(
+        (key, index) =>
+          dur[key] !== 0 && (
+            <Stack sx={{ textAlign: 'center' }} key={index}>
+              <Typography variant="h5">{dur[key]}</Typography>
+              <Typography>{key}</Typography>
+            </Stack>
+          )
+      )}
     </Stack>
   );
 };
