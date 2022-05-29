@@ -8,9 +8,11 @@ import { default as originalTimersList } from './shared/timers';
 import Header from './components/UI/Header';
 import Timers from './components/Timers';
 import About from './components/UI/About';
+import Auth from './components/UI/Auth';
 
 function App() {
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
+  const [authOpen, setAuthOpen] = useState<boolean>(false);
 
   const timersCtx = useContext(TimersContext);
 
@@ -26,6 +28,10 @@ function App() {
   const handleAdd = () => {
     timersCtx.setEditId(undefined);
     timersCtx.setAddTimerOpen(true);
+  };
+
+  const handleAuth = () => {
+    setAuthOpen(true);
   };
 
   const handleAbout = () => {
@@ -49,7 +55,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Header addTimer={handleAdd} about={handleAbout} />
+      <Header addTimer={handleAdd} about={handleAbout} auth={handleAuth} />
 
       <main>
         {/* TODO refactor this main action button into MainAction */}
@@ -70,6 +76,7 @@ function App() {
         setOpen={timersCtx.setAddTimerOpen}
       ></AddTimer>
       <About open={aboutOpen} setOpen={setAboutOpen}></About>
+      <Auth open={authOpen} setOpen={setAuthOpen}></Auth>
     </ThemeProvider>
   );
 }

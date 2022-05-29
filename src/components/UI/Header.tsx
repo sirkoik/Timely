@@ -14,10 +14,11 @@ import React, { useState } from 'react';
 
 interface FormatHeaderProps {
   addTimer: () => void;
+  auth: () => void;
   about: () => void;
 }
 
-const Header = ({ addTimer, about }: FormatHeaderProps): JSX.Element => {
+const Header = ({ addTimer, auth, about }: FormatHeaderProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -52,7 +53,9 @@ const Header = ({ addTimer, about }: FormatHeaderProps): JSX.Element => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Timely
             </Typography>
-            <Button color="inherit">Login</Button>
+            <Button color="inherit" onClick={() => runMenuFn(auth)}>
+              Login
+            </Button>
           </Toolbar>
           <Menu
             id="app-menu"
@@ -61,7 +64,7 @@ const Header = ({ addTimer, about }: FormatHeaderProps): JSX.Element => {
             onClose={handleClose}
             MenuListProps={{ 'aria-labelledby': 'app-button' }}
           >
-            <MenuItem onClick={handleClose}>Login</MenuItem>
+            <MenuItem onClick={() => runMenuFn(auth)}>Login</MenuItem>
             <Divider />
             <MenuItem onClick={() => runMenuFn(addTimer)}>Add Timer</MenuItem>
             <MenuItem>Edit Timers</MenuItem>

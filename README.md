@@ -14,6 +14,10 @@ component, or just the TimerOutput components?
 [assign javascript date to html5 datetime-local input](https://stackoverflow.com/a/66558369/5511776) - trickier than it seems at first glance!
 [Optional Chaining and Nullish Coalescing](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#nullish-coalescing)
 
+## Server-side (serverless functions)
+
+[Password Authentication with Mongoose Part 1](https://www.mongodb.com/blog/post/password-authentication-with-mongoose-part-1)
+
 # Todo
 
 - Add / remove timers

@@ -24,7 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "vercel-dev": "vercel dev"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +46,10 @@
     ]
   },
   "devDependencies": {
-    "date-fns": "^2.28.0"
+    "@types/bcrypt": "^5.0.0",
+    "@vercel/node": "^1.15.3",
+    "bcrypt": "^5.0.1",
+    "date-fns": "^2.28.0",
+    "mongoose": "^6.3.4"
   }
 }
